@@ -10,3 +10,23 @@ body {
     display: flex;
     justify-content: center;
 }
+
+header {
+    text-align: center;
+}
+
+header > h1 {
+    font-weight: 500;
+    font-size: 1.25rem;
+    color: #f9f4da;
+}
+
+header > p {
+    color: #8e8e8e;
+    font-size: 0.875rem;
+    max-block-size: 350px;
+}
+
+main {
+    padding: 73px 57px;
+}

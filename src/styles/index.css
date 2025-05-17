@@ -1,44 +1,12 @@
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
+@import "./reset.css";
 
 body {
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-}
-
-input,
-button,
-textarea,
-select {
-    font: inherit;
-}
-
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    overflow-wrap: break-word;
-}
-
-p {
-    text-wrap: pretty;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    text-wrap: balance;
-}
-
-#root,
-#__next {
-    isolation: isolate;
+    margin: 0;
+    font-family: "Hanken Grotesk", Arial, sans-serif;
+    background-color: #262626;
+    color: #d9d9d9;
+    padding: 20px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
 }

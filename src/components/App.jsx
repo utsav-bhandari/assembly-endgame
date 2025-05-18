@@ -1,8 +1,16 @@
 import { useState } from "react";
 import { languages } from "../languages";
 
+/**
+ * Challenge:
+ * Display the keyboard ⌨️. Use <button>s for each letter
+ * since it'll need to be clickable and tab-accessible.
+ */
+
 function AssemblyEndgame() {
     const [curWord, setCurWord] = useState("react");
+
+    const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
     const languageElements = languages.map((lang) => {
         const styles = {
@@ -22,6 +30,10 @@ function AssemblyEndgame() {
             <span key={idx}>{letter.toLocaleUpperCase()}</span>
         ));
 
+    const keyboardElements = alphabet
+        .split("")
+        .map((letter) => <button key={letter}>{letter.toUpperCase()}</button>);
+
     return (
         <main>
             <header>
@@ -37,6 +49,8 @@ function AssemblyEndgame() {
             </section>
             <section className="language-chips">{languageElements}</section>
             <section className="word">{letterElements}</section>
+            <section className="keyboard">{keyboardElements}</section>
+            <button className="new-game">New Game</button>
         </main>
     );
 }

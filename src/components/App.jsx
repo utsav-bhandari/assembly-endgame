@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { languages } from "../lib/languages";
-import { getFarewellText } from "../lib/utils";
+import { getFarewellText, getRandomWord } from "../lib/utils";
 import clsx from "clsx";
+import ReactConfetti from "react-confetti";
 
 function AssemblyEndgame() {
     // state values
-    const [curWord, setCurWord] = useState("react");
+    const [curWord, setCurWord] = useState(() => getRandomWord());
     const [guessedLetters, setGuessedLetters] = useState([]);
 
     // derived values
@@ -49,11 +50,17 @@ function AssemblyEndgame() {
         );
     });
 
-    const letterElements = curWord.split("").map((letter, idx) => {
-        const letterOnDisplay = guessedLetters.includes(letter)
-            ? letter.toLocaleUpperCase()
-            : "";
-        return <span key={idx}>{letterOnDisplay}</span>;
+    const letterElements = curWord.split("").map((letter, index) => {
+        const shouldRevealLetter =
+            isGameLost || guessedLetters.includes(letter);
+        const letterClassName = clsx(
+            isGameLost && !guessedLetters.includes(letter) && "missed-letter"
+        );
+        return (
+            <span key={index} className={letterClassName}>
+                {shouldRevealLetter ? letter.toUpperCase() : ""}
+            </span>
+        );
     });
 
     const keyboardElements = alphabet.split("").map((letter) => {
@@ -69,6 +76,9 @@ function AssemblyEndgame() {
             <button
                 className={className}
                 key={letter}
+                disabled={isGameOver}
+                aria-disabled={guessedLetters.includes(letter)}
+                aria-label={`Letter ${letter}`}
                 onClick={() => addGuessedLetters(letter)}
             >
                 {letter.toUpperCase()}
@@ -111,8 +121,16 @@ function AssemblyEndgame() {
         return null;
     }
 
+    function resetGame() {
+        setCurWord(getRandomWord());
+        setGuessedLetters([]);
+    }
+
     return (
         <main>
+            {isGameWon && (
+                <ReactConfetti recycle={false} numberOfPieces={1000} />
+            )}
             <header>
                 <h1>Assembly: Endgame</h1>
                 <p>
@@ -120,11 +138,21 @@ function AssemblyEndgame() {
                     world safe from Assembly!
                 </p>
             </header>
-            <section className={gameStatusClass}>{renderGameStatus()}</section>
+            <section
+                aria-live="polite"
+                role="status"
+                className={gameStatusClass}
+            >
+                {renderGameStatus()}
+            </section>
             <section className="language-chips">{languageElements}</section>
             <section className="word">{letterElements}</section>
             <section className="keyboard">{keyboardElements}</section>
-            {isGameOver && <button className="new-game">New Game</button>}
+            {isGameOver && (
+                <button className="new-game" onClick={resetGame}>
+                    New Game
+                </button>
+            )}
         </main>
     );
 }

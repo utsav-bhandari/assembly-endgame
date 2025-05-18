@@ -56,9 +56,27 @@ header > p {
     justify-content: center;
     max-inline-size: 350px;
     gap: 1.5px;
+    margin-block-end: 36px;
 }
 
 .chip {
     border-radius: 3px;
     padding: 4.5px;
+}
+
+.word {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+}
+
+.word > span {
+    block-size: 40px;
+    inline-size: 40px;
+    background-color: #323232;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.125rem;
+    border-bottom: 1px solid #f9f4da;
 }

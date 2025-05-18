@@ -38,6 +38,7 @@ header > p {
 .game-status {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     color: #f9f4da;
     border-radius: 4px;
@@ -46,16 +47,26 @@ header > p {
     inline-size: 100%;
 }
 
-section.game-status.won {
+.game-status.won {
     background-color: #10a95b;
 }
 
-section.game-status.lost {
+.game-status.lost {
     background-color: #ba2a2a;
+}
+
+.game-status.farewell {
+    background-color: #7a5ea7;
+    border: 1px dashed #323232;
 }
 
 .game-status > p {
     margin: 0px;
+}
+
+.game-status > p.farewell-message {
+    font-style: italic;
+    font-weight: 400;
 }
 
 .game-status h2 {

@@ -11,6 +11,10 @@ body {
     justify-content: center;
 }
 
+main {
+    padding: 73px 57px;
+}
+
 header {
     text-align: center;
 }
@@ -24,9 +28,37 @@ header > h1 {
 header > p {
     color: #8e8e8e;
     font-size: 0.875rem;
-    max-block-size: 350px;
+    max-inline-size: 350px;
 }
 
-main {
-    padding: 73px 57px;
+.game-status {
+    background-color: #10a95b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #f9f4da;
+    border-radius: 4px;
+    margin-block: 30px;
+}
+
+.game-status > p {
+    margin: 5px;
+}
+
+.game-status h2 {
+    margin: 5px;
+    font-size: 1.25rem;
+}
+
+.language-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-inline-size: 350px;
+    gap: 1.5px;
+}
+
+.chip {
+    border-radius: 3px;
+    padding: 4.5px;
 }

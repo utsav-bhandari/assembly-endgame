@@ -1,12 +1,6 @@
 import { useState } from "react";
 import { languages } from "../languages";
 
-/**
- * Challenge:
- * Display the keyboard ⌨️. Use <button>s for each letter
- * since it'll need to be clickable and tab-accessible.
- */
-
 function AssemblyEndgame() {
     const [curWord, setCurWord] = useState("react");
 
